@@ -13,7 +13,7 @@ import { LEVELS, type LevelModule } from '../levels/registry';
 import { PERKS, type PerkId } from '../systems/perks';
 
 export type Mode =
-  | 'title' | 'play' | 'dialog' | 'inventory' | 'chords' | 'perk' | 'map' | 'album' | 'dead' | 'victory' | 'help' | 'intro' | 'quests';
+  | 'title' | 'play' | 'dialog' | 'inventory' | 'chords' | 'perk' | 'map' | 'album' | 'dead' | 'victory' | 'help' | 'intro' | 'quests' | 'profiles';
 
 export interface DialogOpt {
   label: string;

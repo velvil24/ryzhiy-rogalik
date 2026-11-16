@@ -2,7 +2,8 @@
 import type { Game } from '../engine/game';
 import { ITEMS } from '../entities/items';
 import { PERKS } from '../systems/perks';
-import { UNLOCKS, saveAlbum } from '../engine/save';
+import { UNLOCKS, saveAlbum, loadAlbum, GAME_ID, type Album } from '../engine/save';
+import * as acc from '../shared/accounts';
 import { level1 } from '../levels/level1';
 
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' } as any)[c]);
@@ -29,6 +30,9 @@ export class UI {
   lastLogLen = -1;
   invPage: 'items' = 'items';
   albumMsg = '';
+  // экран игроков
+  prof: { view: 'list' | 'edit' | 'export' | 'import'; id?: string; avatar: string; color: string; confirmDel?: string; msg?: string; code?: string } = { view: 'list', avatar: acc.AVATARS[0], color: acc.COLORS[0] };
+  lastModalHtml = '';
 
   constructor(public game: Game) {
     this.side = document.getElementById('side')!;
@@ -40,7 +44,7 @@ export class UI {
 
   update() {
     const g = this.game;
-    if (g.mode === 'title' || g.mode === 'album') {
+    if (g.mode === 'title' || g.mode === 'album' || g.mode === 'profiles' || !g.map) {
       this.side.innerHTML = '';
       this.log.innerHTML = '';
       this.hud.innerHTML = '';
@@ -114,14 +118,21 @@ export class UI {
     const g = this.game;
     const show = (html: string, cls = '') => {
       this.modal.className = 'modal open ' + cls;
-      const closable = ['inv', 'chords', 'quests', 'map', 'help', 'album'].includes(cls);
-      this.modal.innerHTML = `<div class="box">${closable ? '<button class="x" data-k="Escape" title="Закрыть">✕</button>' : ''}${html}</div>`;
+      const closable = ['inv', 'chords', 'quests', 'map', 'help', 'album', 'profiles'].includes(cls);
+      const full = `<div class="box">${closable ? '<button class="x" data-k="Escape" title="Закрыть">✕</button>' : ''}${html}</div>`;
+      if (full === this.lastModalHtml && this.modal.classList.contains('open')) return; // не сбивать ввод текста
+      this.lastModalHtml = full;
+      this.modal.innerHTML = full;
     };
     this.overview.style.display = 'none';
     switch (g.mode) {
       case 'play':
         this.modal.className = 'modal';
         this.modal.innerHTML = '';
+        this.lastModalHtml = '';
+        return;
+      case 'profiles':
+        show(this.profilesHtml(), 'profiles');
         return;
       case 'title': {
         const a = g.album;
@@ -129,6 +140,10 @@ export class UI {
           <h1>Рыжий Рогалик</h1>
           <div class="sub">Roguelike-сага о мальчике, который прыгал выше крыш</div>
           <div class="cat">🐈</div>
+          ${(() => {
+            const pr = acc.ensureProfile();
+            return `<button class="who-chip" data-k="p" style="border-color:${pr.color}"><span class="av">${pr.avatar}</span> <b style="color:${pr.color}">${esc(pr.name)}</b> <span class="dim">· сменить игрока</span> <kbd>P</kbd></button>`;
+          })()}
           <div class="opts">
             <button data-k="Enter">▶ Новый забег <kbd>Enter</kbd></button>
             <button data-k="a">📖 Альбом воспоминаний <kbd>A</kbd> · ¢ ${a.memories}</button>
@@ -231,6 +246,157 @@ export class UI {
         show(`<h1>Продолжение следует…</h1><p>Спасибо, что прошли с Бени весь путь (пока что).</p><p>Воспоминаний: ${g.album.memories}. Секретов: ${g.secretsFound.size}.</p><div class="opts"><button data-k="Enter">В главное меню <kbd>Enter</kbd></button></div>`, 'victory');
         return;
     }
+  }
+
+  profilesHtml(): string {
+    const st = this.prof;
+    const cur = acc.currentProfile();
+    if (st.view === 'edit') {
+      const p = st.id ? acc.listProfiles().find((q) => q.id === st.id) : null;
+      return `<h2>${p ? '✏️ Изменить игрока' : '＋ Новый игрок'}</h2>
+        <label class="small">Имя</label>
+        <input id="pname" class="field" maxlength="24" autocomplete="off" placeholder="Например, Бени" value="${esc(p?.name ?? '')}">
+        <div class="small">Значок</div>
+        <div class="avs">${acc.AVATARS.map((a) => `<button data-act="av:${a}" class="${a === st.avatar ? 'on' : ''}">${a}</button>`).join('')}</div>
+        <div class="small">Цвет</div>
+        <div class="avs">${acc.COLORS.map((c) => `<button data-act="col:${c}" class="sw ${c === st.color ? 'on' : ''}" style="background:${c}" aria-label="цвет"></button>`).join('')}</div>
+        ${st.msg ? `<div class="flash">${esc(st.msg)}</div>` : ''}
+        <div class="opts"><button data-act="save">✓ ${p ? 'Сохранить' : 'Создать и играть'}</button><button data-act="list">Отмена</button></div>`;
+    }
+    if (st.view === 'export') {
+      const p = acc.listProfiles().find((q) => q.id === st.id);
+      return `<h2>📤 Код переноса: ${esc(p?.name ?? '')}</h2>
+        <p class="small">Скопируйте код и на другом устройстве откройте «Игроки» → «Ввести код переноса». Перенесётся прогресс во всех играх.</p>
+        <textarea id="pcode" class="field code" readonly>${esc(st.code ?? '')}</textarea>
+        ${st.msg ? `<div class="flash">${esc(st.msg)}</div>` : ''}
+        <div class="opts"><button data-act="copy">📋 Скопировать</button><button data-act="list">Назад</button></div>`;
+    }
+    if (st.view === 'import') {
+      return `<h2>📥 Ввести код переноса</h2>
+        <p class="small">Вставьте код, полученный на другом устройстве (начинается с VLV1-).</p>
+        <textarea id="pcode" class="field code" placeholder="VLV1-…"></textarea>
+        ${st.msg ? `<div class="flash">${esc(st.msg)}</div>` : ''}
+        <div class="opts"><button data-act="doimport">✓ Загрузить игрока</button><button data-act="list">Назад</button></div>`;
+    }
+    const list = acc.listProfiles();
+    return `<h2>👤 Игроки <small>общие для всех игр на этом сайте</small></h2>
+      ${st.msg ? `<div class="flash">${esc(st.msg)}</div>` : ''}
+      <div class="plist">${list.map((p, i) => {
+        const a = acc.loadGameData<Partial<Album>>(GAME_ID, p.id);
+        const info = a ? `¢ ${a.memories ?? 0} · забегов ${a.runs ?? 0} · лучший уровень ${a.bestLevel ?? 1}` : 'в Рогалик пока не играли';
+        const del = st.confirmDel === p.id;
+        return `<div class="prow ${cur?.id === p.id ? 'cur' : ''}" style="--pc:${p.color}">
+          <button class="pick" data-act="pick:${p.id}"><kbd>${i + 1}</kbd> <span class="av">${p.avatar}</span> <b style="color:${p.color}">${esc(p.name)}</b>${cur?.id === p.id ? ' <span class="dim">(сейчас)</span>' : ''}<div class="desc">${info}</div></button>
+          <button class="mini" data-act="edit:${p.id}" title="Изменить">✏️</button>
+          <button class="mini" data-act="export:${p.id}" title="Код переноса">📤</button>
+          <button class="mini ${del ? 'danger' : ''}" data-act="del:${p.id}" title="Удалить">${del ? 'Точно?' : '🗑'}</button>
+        </div>`;
+      }).join('')}</div>
+      <div class="opts"><button data-act="new">＋ Новый игрок <kbd>N</kbd></button><button data-act="import">📥 Ввести код переноса</button><button data-k="Escape">Назад <kbd>Esc</kbd></button></div>`;
+  }
+
+  /** Действия на экране игроков (кнопки с data-act). */
+  profileAction(act: string) {
+    const g = this.game;
+    const st = this.prof;
+    const [cmd, arg] = [act.split(':')[0], act.slice(act.indexOf(':') + 1)];
+    st.msg = undefined;
+    if (cmd !== 'del') st.confirmDel = undefined;
+    const reload = () => {
+      g.album = loadAlbum();
+      this.albumMsg = '';
+    };
+    switch (cmd) {
+      case 'pick':
+        acc.switchProfile(arg);
+        reload();
+        g.mode = 'title';
+        break;
+      case 'new': {
+        const n = acc.listProfiles().length;
+        Object.assign(st, { view: 'edit', id: undefined, avatar: acc.AVATARS[n % acc.AVATARS.length], color: acc.COLORS[n % acc.COLORS.length] });
+        setTimeout(() => (document.getElementById('pname') as HTMLInputElement | null)?.focus(), 30);
+        break;
+      }
+      case 'edit': {
+        const p = acc.listProfiles().find((q) => q.id === arg);
+        if (p) Object.assign(st, { view: 'edit', id: p.id, avatar: p.avatar, color: p.color });
+        break;
+      }
+      case 'av':
+      case 'col': {
+        // сохранить уже набранное имя при перерисовке
+        const name = (document.getElementById('pname') as HTMLInputElement | null)?.value;
+        if (cmd === 'av') st.avatar = arg;
+        else st.color = arg;
+        this.renderModal();
+        const inp = document.getElementById('pname') as HTMLInputElement | null;
+        if (inp && name !== undefined) inp.value = name;
+        return;
+      }
+      case 'save': {
+        const name = (document.getElementById('pname') as HTMLInputElement | null)?.value ?? '';
+        if (!name.trim()) {
+          st.msg = 'Введите имя.';
+          break;
+        }
+        if (st.id) acc.updateProfile(st.id, { name, avatar: st.avatar, color: st.color });
+        else acc.createProfile(name, st.avatar, st.color);
+        reload();
+        st.view = 'list';
+        g.mode = 'title';
+        break;
+      }
+      case 'del':
+        if (st.confirmDel !== arg) {
+          st.confirmDel = arg;
+          break;
+        }
+        acc.deleteProfile(arg);
+        st.confirmDel = undefined;
+        acc.ensureProfile();
+        reload();
+        st.msg = 'Игрок удалён.';
+        break;
+      case 'export':
+        Object.assign(st, { view: 'export', id: arg, code: acc.exportProfile(arg) });
+        break;
+      case 'copy': {
+        const ta = document.getElementById('pcode') as HTMLTextAreaElement | null;
+        const code = st.code ?? '';
+        const done = () => {
+          st.msg = 'Скопировано!';
+          this.renderModal();
+        };
+        if (navigator.clipboard?.writeText) navigator.clipboard.writeText(code).then(done, () => ta?.select());
+        else if (ta) {
+          ta.select();
+          document.execCommand('copy');
+          done();
+        }
+        return;
+      }
+      case 'import':
+        st.view = 'import';
+        break;
+      case 'doimport': {
+        const code = (document.getElementById('pcode') as HTMLTextAreaElement | null)?.value ?? '';
+        try {
+          const p = acc.importProfile(code);
+          reload();
+          st.view = 'list';
+          st.msg = `Игрок «${p.name}» загружен.`;
+        } catch (e) {
+          st.msg = (e as Error).message;
+        }
+        break;
+      }
+      case 'list':
+        st.view = 'list';
+        break;
+    }
+    this.lastModalHtml = '';
+    this.renderModal();
   }
 
   questsHtml(): string {

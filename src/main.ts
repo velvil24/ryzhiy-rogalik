@@ -5,6 +5,8 @@ import { Renderer } from './ui/render';
 import { UI } from './ui/ui';
 import { Audio } from './audio/audio';
 import { ITEMS } from './entities/items';
+import { listProfiles, onAccountsChange } from './shared/accounts';
+import { loadAlbum } from './engine/save';
 
 const game = new Game();
 game.hooks = {
@@ -111,8 +113,23 @@ function handle(key: string, code: string, shift: boolean) {
     return;
   }
   switch (g.mode) {
+    case 'profiles': {
+      const st = ui.prof;
+      if (k === 'Escape') {
+        if (st.view !== 'list') ui.profileAction('list');
+        else g.mode = 'title';
+      } else if (st.view === 'list' && (k === 'n' || k === 'т')) ui.profileAction('new');
+      else if (st.view === 'list' && /^[1-9]$/.test(k)) {
+        const p = listProfiles()[+k - 1];
+        if (p) ui.profileAction('pick:' + p.id);
+      }
+      return;
+    }
     case 'title':
-      if (k === 'Enter' || k === ' ') g.newRun();
+      if (k === 'p' || k === 'з') {
+        ui.prof = { ...ui.prof, view: 'list', msg: undefined, confirmDel: undefined };
+        g.mode = 'profiles';
+      } else if (k === 'Enter' || k === ' ') g.newRun();
       else if (k === 'a' || k === 'ф') g.mode = 'album';
       else if (k === '?' || k === 'h') g.mode = 'help';
       return;
@@ -263,6 +280,15 @@ function handle(key: string, code: string, shift: boolean) {
 
 window.addEventListener('keydown', (e) => {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
+  // ввод текста (имя игрока, код переноса)
+  const tg = e.target as HTMLElement;
+  if (tg && (tg.tagName === 'INPUT' || tg.tagName === 'TEXTAREA')) {
+    if (e.key === 'Enter' && tg.id === 'pname') {
+      e.preventDefault();
+      ui.profileAction('save');
+    } else if (e.key === 'Escape') ui.profileAction('list');
+    return;
+  }
   if (['Tab', ' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'PageUp', 'PageDown', 'Home', 'End'].includes(e.key)) e.preventDefault();
   handle(e.key, e.code, e.shiftKey);
   ui.update();
@@ -270,6 +296,12 @@ window.addEventListener('keydown', (e) => {
 
 // клики по кнопкам в окнах
 document.getElementById('modal')!.addEventListener('click', (e) => {
+  const a = (e.target as HTMLElement).closest('button[data-act]') as HTMLElement | null;
+  if (a) {
+    ui.profileAction(a.dataset.act!);
+    ui.update();
+    return;
+  }
   const b = (e.target as HTMLElement).closest('button[data-k]') as HTMLElement | null;
   if (!b) return;
   handle(b.dataset.k!, '', false);
@@ -373,6 +405,14 @@ function frame(now: number) {
   }
   requestAnimationFrame(frame);
 }
+// игрок сменился в другой вкладке или в другой игре на этом сайте
+onAccountsChange(() => {
+  if (game.mode === 'title' || game.mode === 'album' || game.mode === 'profiles') {
+    game.album = loadAlbum();
+    ui.lastModalHtml = '';
+    ui.update();
+  }
+});
 ui.update();
 requestAnimationFrame(frame);
 

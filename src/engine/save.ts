@@ -1,4 +1,6 @@
-// «Альбом воспоминаний» — мета-прогресс между забегами. Хранится в localStorage.
+// «Альбом воспоминаний» — мета-прогресс между забегами. Хранится в localStorage
+// отдельно для каждого игрока (общие профили — src/shared/accounts.ts).
+import { loadGameData, migrateLegacy, saveGameData } from '../shared/accounts';
 
 export interface Album {
   memories: number; // мета-валюта
@@ -16,7 +18,8 @@ export interface Album {
   totalSecrets: number;
 }
 
-const KEY = 'ryzhiy-rogalik-album-v1';
+const LEGACY_KEY = 'ryzhiy-rogalik-album-v1';
+export const GAME_ID = 'rogalik';
 
 export function emptyAlbum(): Album {
   return {
@@ -25,30 +28,19 @@ export function emptyAlbum(): Album {
   };
 }
 
-function storage(): Storage | null {
-  try {
-    return typeof localStorage !== 'undefined' ? localStorage : null;
-  } catch {
-    return null;
-  }
-}
-
+/** Альбом текущего игрока. */
 export function loadAlbum(): Album {
   try {
-    const raw = storage()?.getItem(KEY);
-    if (!raw) return emptyAlbum();
-    return { ...emptyAlbum(), ...JSON.parse(raw) };
+    migrateLegacy(GAME_ID, LEGACY_KEY);
+    const a = loadGameData<Partial<Album>>(GAME_ID);
+    return { ...emptyAlbum(), ...(a ?? {}) };
   } catch {
     return emptyAlbum();
   }
 }
 
 export function saveAlbum(a: Album) {
-  try {
-    storage()?.setItem(KEY, JSON.stringify(a));
-  } catch {
-    /* приватный режим и т.п. — игра работает и без сохранения */
-  }
+  saveGameData(GAME_ID, a);
 }
 
 export const UNLOCKS: { id: string; name: string; cost: number; desc: string }[] = [
