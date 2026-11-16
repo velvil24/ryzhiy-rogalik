@@ -1,0 +1,1070 @@
+{
+ "format": "mp3",
+ "base": "assets/",
+ "note": "Имена файлов совпадают с id; игра грузит assets/<file>. Если файла нет, звучит заглушка.",
+ "items": [
+  {
+   "id": "level1_day",
+   "type": "music",
+   "file": "audio/music/level1_day.mp3",
+   "prompt": "Warm sunny Middle Eastern acoustic rock instrumental, acoustic guitar riff E-G-A-B in hijaz mode, darbuka groove, oud, light bass, playful whistling, nostalgic childhood summer feeling, 105 BPM, loopable, 2 minutes"
+  },
+  {
+   "id": "level1_night",
+   "type": "music",
+   "file": "audio/music/level1_night.mp3",
+   "prompt": "Quiet Middle Eastern acoustic night instrumental, soft fingerpicked guitar motif E-G-A-B in hijaz mode, gentle flute, crickets, calm nostalgic summer night in a village, 80 BPM, loopable, 2 minutes"
+  },
+  {
+   "id": "level1_battle",
+   "type": "music",
+   "file": "audio/music/level1_battle.mp3",
+   "prompt": "Middle Eastern acoustic rock battle instrumental, guitar riff E-G-A-B in hijaz mode, driving darbuka and rock drums, electric guitar joins, energetic, 125 BPM, loopable, 1.5 minutes"
+  },
+  {
+   "id": "level2",
+   "type": "music",
+   "file": "audio/music/level2.mp3",
+   "prompt": "Energetic teenage pop-punk instrumental, distorted power chords riff E-G-A-B, fast punk drums, driving bass, school bell sample hits, rebellious and fun, 160 BPM, loopable, 2 minutes"
+  },
+  {
+   "id": "level3",
+   "type": "music",
+   "file": "audio/music/level3.mp3",
+   "prompt": "Melancholic romantic chamber music with subtle rock undertone, solo cello melody E-G-A-B in minor, violin, piano, distant Prague church bells, gothic old European city at night, studying medicine, 80 BPM, loopable, 2 minutes"
+  },
+  {
+   "id": "level4",
+   "type": "music",
+   "file": "audio/music/level4.mp3",
+   "prompt": "Tropical Thai fusion instrumental, ranat ek xylophone melody E-G-A-B pentatonic, khaen mouth organ, soft synth pads, slide guitar, ocean waves and cicadas, relaxed adventurous mood, 95 BPM, loopable, 2 minutes"
+  },
+  {
+   "id": "level5",
+   "type": "music",
+   "file": "audio/music/level5.mp3",
+   "prompt": "Epic uplifting cinematic rock finale, electric guitar solo on motif E-G-A-B, orchestra, wordless choir, echoes of Middle Eastern, cello and Thai xylophone themes, triumphant, ends on an unresolved suspended chord, 120 BPM, 2.5 minutes"
+  },
+  {
+   "id": "menu",
+   "type": "music",
+   "file": "audio/music/menu.mp3",
+   "prompt": "Gentle fingerpicked acoustic guitar motif E-G-A-B, soft cat purring, cozy, warm, loopable 1 minute"
+  },
+  {
+   "id": "death",
+   "type": "music",
+   "file": "audio/music/death.mp3",
+   "prompt": "Sad tender solo acoustic guitar, slow, nostalgic, memory album, soft vinyl crackle, 40 seconds"
+  },
+  {
+   "id": "levelup",
+   "type": "music",
+   "file": "audio/music/levelup.mp3",
+   "prompt": "Short triumphant electric guitar lick level up jingle, 3 seconds"
+  },
+  {
+   "id": "boss_train",
+   "type": "music",
+   "file": "audio/music/boss_train.mp3",
+   "prompt": "Dark industrial rock boss battle, rhythmic train wheels on rail joints as percussion, eerie ghost train horn melody, distorted guitars, haunting children choir, intense, 140 BPM, transitions to major key heroic guitar in final third, 3 minutes"
+  },
+  {
+   "id": "boss_french",
+   "type": "music",
+   "file": "audio/music/boss_french.mp3",
+   "prompt": "Cheeky ska-punk mini boss fight with parody French accordion musette melody, brass hits, fast, comedic tension, 150 BPM, 1.5 minutes"
+  },
+  {
+   "id": "first_riff",
+   "type": "music",
+   "file": "audio/music/first_riff.mp3",
+   "prompt": "Joyful first acoustic guitar riff E-G-A-B, a kid finally playing his own guitar, bright, triumphant and warm, 30 seconds"
+  },
+  {
+   "id": "dim_cats",
+   "type": "music",
+   "file": "audio/music/dim_cats.mp3",
+   "prompt": "Whimsical giant cat kingdom theme, playful pizzicato strings, purring bass, royal fanfare on acoustic guitar motif E-G-A-B, 1 minute loop"
+  },
+  {
+   "id": "dim_som",
+   "type": "music",
+   "file": "audio/music/dim_som.mp3",
+   "prompt": "Dreamy underwater kingdom theme, bubbling synths, slow harp, deep gentle bass, mystical old catfish, 1 minute loop"
+  },
+  {
+   "id": "dim_frost",
+   "type": "music",
+   "file": "audio/music/dim_frost.mp3",
+   "prompt": "Cold Yakut tundra theme, khomus jaw harp, wind, deep throat singing drone, icy bells, 1 minute loop"
+  },
+  {
+   "id": "dim_rock",
+   "type": "music",
+   "file": "audio/music/dim_rock.mp3",
+   "prompt": "Stadium rock stage theme, crowd cheering, heavy drums, guitar riff E-G-A-B, energetic, 1 minute loop"
+  },
+  {
+   "id": "dim_sky",
+   "type": "music",
+   "file": "audio/music/dim_sky.mp3",
+   "prompt": "Soaring above the clouds theme, airy synth pads, jet engine whoosh, uplifting guitar melody, 1 minute loop"
+  },
+  {
+   "id": "dim_rogue",
+   "type": "music",
+   "file": "audio/music/dim_rogue.mp3",
+   "prompt": "8-bit chiptune retro dungeon theme, square waves, minimal, mysterious, 1 minute loop"
+  },
+  {
+   "id": "victory",
+   "type": "music",
+   "file": "audio/music/victory.mp3",
+   "prompt": "Sunset ending theme, acoustic guitar and soft strings, nostalgic and warm, childhood becomes memory, 1 minute"
+  },
+  {
+   "id": "ghost_horn",
+   "type": "sfx",
+   "file": "audio/sfx/ghost_horn.mp3",
+   "prompt": "Ghostly distorted steam train horn, long, echoing in the night, eerie"
+  },
+  {
+   "id": "train_approach",
+   "type": "sfx",
+   "file": "audio/sfx/train_approach.mp3",
+   "prompt": "Freight train approaching fast at night, rumbling, rails screeching, growing loud"
+  },
+  {
+   "id": "train_break",
+   "type": "sfx",
+   "file": "audio/sfx/train_break.mp3",
+   "prompt": "Metal train car shattering into ghostly sparks, magical crunch"
+  },
+  {
+   "id": "jet_flyby",
+   "type": "sfx",
+   "file": "audio/sfx/jet_flyby.mp3",
+   "prompt": "Fighter jet flyby very low and loud, roaring overhead"
+  },
+  {
+   "id": "stall_door",
+   "type": "sfx",
+   "file": "audio/sfx/stall_door.mp3",
+   "prompt": "Toilet stall door slamming hard"
+  },
+  {
+   "id": "slip",
+   "type": "sfx",
+   "file": "audio/sfx/slip.mp3",
+   "prompt": "Sneakers squeaking and slipping on wet tile floor"
+  },
+  {
+   "id": "faucet",
+   "type": "sfx",
+   "file": "audio/sfx/faucet.mp3",
+   "prompt": "Bathroom faucet running water"
+  },
+  {
+   "id": "amb_level1",
+   "type": "sfx",
+   "file": "audio/sfx/amb_level1.mp3",
+   "prompt": "Israeli village summer night ambience, crickets, distant jackals howling, wind in eucalyptus trees, small stream"
+  },
+  {
+   "id": "amb_level2",
+   "type": "sfx",
+   "file": "audio/sfx/amb_level2.mp3",
+   "prompt": "School hallway ambience, kids chatter, lockers, school bell, basketball bouncing"
+  },
+  {
+   "id": "amb_level3",
+   "type": "sfx",
+   "file": "audio/sfx/amb_level3.mp3",
+   "prompt": "Prague old town ambience, tram bell, cobblestone footsteps, church bells, light rain"
+  },
+  {
+   "id": "amb_level4",
+   "type": "sfx",
+   "file": "audio/sfx/amb_level4.mp3",
+   "prompt": "Thai beach and night market ambience, waves, cicadas, tuk-tuk engine, vendors"
+  },
+  {
+   "id": "amb_level5",
+   "type": "sfx",
+   "file": "audio/sfx/amb_level5.mp3",
+   "prompt": "Dreamlike ambience mixing echoes of village, school, city and beach, soft wind"
+  },
+  {
+   "id": "step",
+   "type": "sfx",
+   "file": "audio/sfx/step.mp3",
+   "prompt": "Kid sneakers footsteps on dry dirt, light",
+   "duration_seconds": 1
+  },
+  {
+   "id": "hit_stick",
+   "type": "sfx",
+   "file": "audio/sfx/hit_stick.mp3",
+   "prompt": "Wooden stick whoosh and hit, cartoon",
+   "duration_seconds": 1
+  },
+  {
+   "id": "throw_rock",
+   "type": "sfx",
+   "file": "audio/sfx/throw_rock.mp3",
+   "prompt": "Small rock thrown, whoosh and thud",
+   "duration_seconds": 1
+  },
+  {
+   "id": "glass_break",
+   "type": "sfx",
+   "file": "audio/sfx/glass_break.mp3",
+   "prompt": "Glass window shattering, then kids running away",
+   "duration_seconds": 3
+  },
+  {
+   "id": "chord_e",
+   "type": "sfx",
+   "file": "audio/sfx/chord_e.mp3",
+   "prompt": "Electric guitar power chord with sonic boom blast",
+   "duration_seconds": 2
+  },
+  {
+   "id": "chord_a",
+   "type": "sfx",
+   "file": "audio/sfx/chord_a.mp3",
+   "prompt": "Bright clean guitar chord with sparkling magic shimmer",
+   "duration_seconds": 2
+  },
+  {
+   "id": "chord_g",
+   "type": "sfx",
+   "file": "audio/sfx/chord_g.mp3",
+   "prompt": "Guitar chord followed by many cats meowing together",
+   "duration_seconds": 3
+  },
+  {
+   "id": "chord_power",
+   "type": "sfx",
+   "file": "audio/sfx/chord_power.mp3",
+   "prompt": "Heavy distorted electric guitar power chord, huge blast",
+   "duration_seconds": 2
+  },
+  {
+   "id": "solo",
+   "type": "sfx",
+   "file": "audio/sfx/solo.mp3",
+   "prompt": "Shredding electric guitar solo with laser zaps",
+   "duration_seconds": 4
+  },
+  {
+   "id": "build_shalash",
+   "type": "sfx",
+   "file": "audio/sfx/build_shalash.mp3",
+   "prompt": "Branches and cardboard being stacked, rope tied",
+   "duration_seconds": 3
+  },
+  {
+   "id": "fishing",
+   "type": "sfx",
+   "file": "audio/sfx/fishing.mp3",
+   "prompt": "Fishing rod reel spinning, splash, line tension",
+   "duration_seconds": 3
+  },
+  {
+   "id": "jump_roof",
+   "type": "sfx",
+   "file": "audio/sfx/jump_roof.mp3",
+   "prompt": "Kid jump whoosh and landing on old mattress, springs",
+   "duration_seconds": 2
+  },
+  {
+   "id": "eat_mammoth",
+   "type": "sfx",
+   "file": "audio/sfx/eat_mammoth.mp3",
+   "prompt": "Chewing tough dried meat, satisfied crunch, magical power up",
+   "duration_seconds": 2
+  },
+  {
+   "id": "pickup",
+   "type": "sfx",
+   "file": "audio/sfx/pickup.mp3",
+   "prompt": "Short cheerful pickup chime",
+   "duration_seconds": 1
+  },
+  {
+   "id": "death",
+   "type": "sfx",
+   "file": "audio/sfx/death.mp3",
+   "prompt": "Soft sad guitar strum fading out, camera shutter click",
+   "duration_seconds": 3
+  },
+  {
+   "id": "som_splash",
+   "type": "sfx",
+   "file": "audio/sfx/som_splash.mp3",
+   "prompt": "Big fish splash in a pond, magical bubbles rising",
+   "duration_seconds": 2
+  },
+  {
+   "id": "cat_meow",
+   "type": "sfx",
+   "file": "audio/sfx/cat_meow.mp3",
+   "prompt": "Friendly orange cat short meow, then purring",
+   "duration_seconds": 2
+  },
+  {
+   "id": "cat_purr",
+   "type": "sfx",
+   "file": "audio/sfx/cat_purr.mp3",
+   "prompt": "Cat loud happy purring close up",
+   "duration_seconds": 2
+  },
+  {
+   "id": "cat_hiss",
+   "type": "sfx",
+   "file": "audio/sfx/cat_hiss.mp3",
+   "prompt": "Angry cat hissing and spitting",
+   "duration_seconds": 1
+  },
+  {
+   "id": "king_meow",
+   "type": "sfx",
+   "file": "audio/sfx/king_meow.mp3",
+   "prompt": "Huge majestic cat deep regal meow, slow, slightly echoing, royal",
+   "duration_seconds": 3
+  },
+  {
+   "id": "cat_bark",
+   "type": "sfx",
+   "file": "audio/sfx/cat_bark.mp3",
+   "prompt": "A small cat that barks like a little dog, short funny bark",
+   "duration_seconds": 1
+  },
+  {
+   "id": "cat_quack",
+   "type": "sfx",
+   "file": "audio/sfx/cat_quack.mp3",
+   "prompt": "A small cat that quacks like a duck, short funny quack",
+   "duration_seconds": 1
+  },
+  {
+   "id": "amir_laugh",
+   "type": "sfx",
+   "file": "audio/sfx/amir_laugh.mp3",
+   "prompt": "Loud goofy boy belly laugh, contagious, snorting",
+   "duration_seconds": 2
+  },
+  {
+   "id": "pipe_down",
+   "type": "sfx",
+   "file": "audio/sfx/pipe_down.mp3",
+   "prompt": "Classic cartoon fall into a pipe, descending whoosh with warp tone",
+   "duration_seconds": 1
+  },
+  {
+   "id": "burrow_reveal",
+   "type": "sfx",
+   "file": "audio/sfx/burrow_reveal.mp3",
+   "prompt": "Soft magical blip, air ripple shimmer reveal",
+   "duration_seconds": 1
+  },
+  {
+   "id": "secret_found",
+   "type": "sfx",
+   "file": "audio/sfx/secret_found.mp3",
+   "prompt": "Short magical discovery chime, sparkling",
+   "duration_seconds": 2
+  },
+  {
+   "id": "hurt",
+   "type": "sfx",
+   "file": "audio/sfx/hurt.mp3",
+   "prompt": "Kid short ouch grunt, cartoon hit",
+   "duration_seconds": 1
+  },
+  {
+   "id": "dog_bark",
+   "type": "sfx",
+   "file": "audio/sfx/dog_bark.mp3",
+   "prompt": "Angry dog barking behind a fence",
+   "duration_seconds": 2
+  },
+  {
+   "id": "jackal",
+   "type": "sfx",
+   "file": "audio/sfx/jackal.mp3",
+   "prompt": "Distant jackals howling at night",
+   "duration_seconds": 3
+  },
+  {
+   "id": "bees",
+   "type": "sfx",
+   "file": "audio/sfx/bees.mp3",
+   "prompt": "Angry swarm of bees buzzing",
+   "duration_seconds": 3
+  },
+  {
+   "id": "school_bell",
+   "type": "sfx",
+   "file": "audio/sfx/school_bell.mp3",
+   "prompt": "Old school bell ringing",
+   "duration_seconds": 2
+  },
+  {
+   "id": "door",
+   "type": "sfx",
+   "file": "audio/sfx/door.mp3",
+   "prompt": "Wooden door opening creak",
+   "duration_seconds": 1
+  },
+  {
+   "id": "level_up",
+   "type": "sfx",
+   "file": "audio/sfx/level_up.mp3",
+   "prompt": "Short triumphant electric guitar lick level up jingle",
+   "duration_seconds": 2
+  },
+  {
+   "id": "beni_1_ru",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "ru",
+   "file": "audio/voice/beni_1_ru.mp3",
+   "text": "Погнали в лес!",
+   "style": "excited, fast, shouting to friends",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "beni_1_he",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "he",
+   "file": "audio/voice/beni_1_he.mp3",
+   "text": "יאללה, ליער!",
+   "style": "excited, fast, shouting to friends",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "beni_2_ru",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "ru",
+   "file": "audio/voice/beni_2_ru.mp3",
+   "text": "Это мой рифф!",
+   "style": "proud, cocky, medium pace",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "beni_2_he",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "he",
+   "file": "audio/voice/beni_2_he.mp3",
+   "text": "זה הריף שלי!",
+   "style": "proud, cocky, medium pace",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "beni_3_ru",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "ru",
+   "file": "audio/voice/beni_3_ru.mp3",
+   "text": "Мама, я не виноват!",
+   "style": "guilty but pleading, fast, slightly whiny",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "beni_3_he",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "he",
+   "file": "audio/voice/beni_3_he.mp3",
+   "text": "אמא, זה לא אני!",
+   "style": "guilty but pleading, fast, slightly whiny",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "beni_4_ru",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "ru",
+   "file": "audio/voice/beni_4_ru.mp3",
+   "text": "Я сильнее вас двоих!",
+   "style": "angry, determined, loud",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "beni_4_he",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "he",
+   "file": "audio/voice/beni_4_he.mp3",
+   "text": "אני חזק משניכם!",
+   "style": "angry, determined, loud",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "beni_5_ru",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "ru",
+   "file": "audio/voice/beni_5_ru.mp3",
+   "text": "Кис-кис, рыжий!",
+   "style": "soft, tender, slow, calling a cat",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "beni_5_he",
+   "type": "voice",
+   "voice": "beni",
+   "lang": "he",
+   "file": "audio/voice/beni_5_he.mp3",
+   "text": "פסס פסס, ג׳ינג׳י!",
+   "style": "soft, tender, slow, calling a cat",
+   "voice_prompt": "Energetic 10-year-old boy, bright slightly raspy voice, confident and cheeky but kind, bilingual Russian-Hebrew speaker, natural"
+  },
+  {
+   "id": "som_1_ru",
+   "type": "voice",
+   "voice": "som",
+   "lang": "ru",
+   "file": "audio/voice/som_1_ru.mp3",
+   "text": "Буль… Кто тревожит мою речку?",
+   "style": "grumpy, very slow, gurgling",
+   "voice_prompt": "Very old wise deep male voice, slow, bubbly underwater gurgling texture, calm and slightly grumpy, mystical"
+  },
+  {
+   "id": "som_1_he",
+   "type": "voice",
+   "voice": "som",
+   "lang": "he",
+   "file": "audio/voice/som_1_he.mp3",
+   "text": "בלוב… מי מפריע לנחל שלי?",
+   "style": "grumpy, very slow, gurgling",
+   "voice_prompt": "Very old wise deep male voice, slow, bubbly underwater gurgling texture, calm and slightly grumpy, mystical"
+  },
+  {
+   "id": "som_2_ru",
+   "type": "voice",
+   "voice": "som",
+   "lang": "ru",
+   "file": "audio/voice/som_2_ru.mp3",
+   "text": "Отпустишь — станешь другом реки.",
+   "style": "wise, solemn, slow, echoing",
+   "voice_prompt": "Very old wise deep male voice, slow, bubbly underwater gurgling texture, calm and slightly grumpy, mystical"
+  },
+  {
+   "id": "som_2_he",
+   "type": "voice",
+   "voice": "som",
+   "lang": "he",
+   "file": "audio/voice/som_2_he.mp3",
+   "text": "תשחרר אותי — ותהיה חבר של הנחל.",
+   "style": "wise, solemn, slow, echoing",
+   "voice_prompt": "Very old wise deep male voice, slow, bubbly underwater gurgling texture, calm and slightly grumpy, mystical"
+  },
+  {
+   "id": "king_1_ru",
+   "type": "voice",
+   "voice": "king",
+   "lang": "ru",
+   "file": "audio/voice/king_1_ru.mp3",
+   "text": "Мур. Достаточно, смертный.",
+   "style": "deep regal lazy cat-like voice, slow, amused",
+   "voice_prompt": "Huge regal lazy cat-like deep voice, slow, amused"
+  },
+  {
+   "id": "king_1_he",
+   "type": "voice",
+   "voice": "king",
+   "lang": "he",
+   "file": "audio/voice/king_1_he.mp3",
+   "text": "מרררר. מספיק, בן תמותה.",
+   "style": "deep regal lazy cat-like voice, slow, amused",
+   "voice_prompt": "Huge regal lazy cat-like deep voice, slow, amused"
+  },
+  {
+   "id": "nina_1_ru",
+   "type": "voice",
+   "voice": "nina",
+   "lang": "ru",
+   "file": "audio/voice/nina_1_ru.mp3",
+   "text": "Бени, ты опять весь в грязи?!",
+   "style": "exasperated but loving, medium pace",
+   "voice_prompt": "Warm caring Russian woman around 40, soft but can be strict, motherly"
+  },
+  {
+   "id": "nina_1_he",
+   "type": "voice",
+   "voice": "nina",
+   "lang": "he",
+   "file": "audio/voice/nina_1_he.mp3",
+   "text": "בני, שוב אתה כולך בוץ?!",
+   "style": "exasperated but loving, medium pace",
+   "voice_prompt": "Warm caring Russian woman around 40, soft but can be strict, motherly"
+  },
+  {
+   "id": "nina_2_ru",
+   "type": "voice",
+   "voice": "nina",
+   "lang": "ru",
+   "file": "audio/voice/nina_2_ru.mp3",
+   "text": "Иди есть, котлеты остынут!",
+   "style": "calling from kitchen, warm, loud",
+   "voice_prompt": "Warm caring Russian woman around 40, soft but can be strict, motherly"
+  },
+  {
+   "id": "nina_2_he",
+   "type": "voice",
+   "voice": "nina",
+   "lang": "he",
+   "file": "audio/voice/nina_2_he.mp3",
+   "text": "בוא לאכול, הקציצות מתקררות!",
+   "style": "calling from kitchen, warm, loud",
+   "voice_prompt": "Warm caring Russian woman around 40, soft but can be strict, motherly"
+  },
+  {
+   "id": "vova_1_ru",
+   "type": "voice",
+   "voice": "vova",
+   "lang": "ru",
+   "file": "audio/voice/vova_1_ru.mp3",
+   "text": "Сынок, ну и зачем ты это сделал?",
+   "style": "calm, serious, slow, disappointed but kind",
+   "voice_prompt": "Calm deep Russian man around 40, dry humor, reassuring, wise father"
+  },
+  {
+   "id": "vova_1_he",
+   "type": "voice",
+   "voice": "vova",
+   "lang": "he",
+   "file": "audio/voice/vova_1_he.mp3",
+   "text": "בני, למה עשית את זה?",
+   "style": "calm, serious, slow, disappointed but kind",
+   "voice_prompt": "Calm deep Russian man around 40, dry humor, reassuring, wise father"
+  },
+  {
+   "id": "vova_2_ru",
+   "type": "voice",
+   "voice": "vova",
+   "lang": "ru",
+   "file": "audio/voice/vova_2_ru.mp3",
+   "text": "Бени, хватит лазить под машину.",
+   "style": "dry humor, deadpan, medium pace",
+   "voice_prompt": "Calm deep Russian man around 40, dry humor, reassuring, wise father"
+  },
+  {
+   "id": "vova_2_he",
+   "type": "voice",
+   "voice": "vova",
+   "lang": "he",
+   "file": "audio/voice/vova_2_he.mp3",
+   "text": "בני, די לזחול מתחת לאוטו.",
+   "style": "dry humor, deadpan, medium pace",
+   "voice_prompt": "Calm deep Russian man around 40, dry humor, reassuring, wise father"
+  },
+  {
+   "id": "emily_1_ru",
+   "type": "voice",
+   "voice": "emily",
+   "lang": "ru",
+   "file": "audio/voice/emily_1_ru.mp3",
+   "text": "Мама меня больше любит!",
+   "style": "teasing, singsong, fast",
+   "voice_prompt": "Young girl, bright clear voice, sassy and clever, playful sibling rivalry"
+  },
+  {
+   "id": "emily_1_he",
+   "type": "voice",
+   "voice": "emily",
+   "lang": "he",
+   "file": "audio/voice/emily_1_he.mp3",
+   "text": "אמא אוהבת אותי יותר!",
+   "style": "teasing, singsong, fast",
+   "voice_prompt": "Young girl, bright clear voice, sassy and clever, playful sibling rivalry"
+  },
+  {
+   "id": "emily_2_ru",
+   "type": "voice",
+   "voice": "emily",
+   "lang": "ru",
+   "file": "audio/voice/emily_2_ru.mp3",
+   "text": "Ладно… держи мою заначку.",
+   "style": "shy, reluctant, soft, slow",
+   "voice_prompt": "Young girl, bright clear voice, sassy and clever, playful sibling rivalry"
+  },
+  {
+   "id": "emily_2_he",
+   "type": "voice",
+   "voice": "emily",
+   "lang": "he",
+   "file": "audio/voice/emily_2_he.mp3",
+   "text": "טוב… קח את המטמון שלי.",
+   "style": "shy, reluctant, soft, slow",
+   "voice_prompt": "Young girl, bright clear voice, sassy and clever, playful sibling rivalry"
+  },
+  {
+   "id": "enbar_1_ru",
+   "type": "voice",
+   "voice": "enbar",
+   "lang": "ru",
+   "file": "audio/voice/enbar_1_ru.mp3",
+   "text": "…Ну. Пойдём.",
+   "style": "gloomy, flat, very slow",
+   "voice_prompt": "Gloomy 10-year-old boy, low quiet monotone voice, few words, long pauses, Israeli accent"
+  },
+  {
+   "id": "enbar_1_he",
+   "type": "voice",
+   "voice": "enbar",
+   "lang": "he",
+   "file": "audio/voice/enbar_1_he.mp3",
+   "text": "…נו. בוא.",
+   "style": "gloomy, flat, very slow",
+   "voice_prompt": "Gloomy 10-year-old boy, low quiet monotone voice, few words, long pauses, Israeli accent"
+  },
+  {
+   "id": "enbar_2_ru",
+   "type": "voice",
+   "voice": "enbar",
+   "lang": "ru",
+   "file": "audio/voice/enbar_2_ru.mp3",
+   "text": "Ты единственный, кто меня слушает.",
+   "style": "quiet, sincere, slow, almost whispering",
+   "voice_prompt": "Gloomy 10-year-old boy, low quiet monotone voice, few words, long pauses, Israeli accent"
+  },
+  {
+   "id": "enbar_2_he",
+   "type": "voice",
+   "voice": "enbar",
+   "lang": "he",
+   "file": "audio/voice/enbar_2_he.mp3",
+   "text": "אתה היחיד שמקשיב לי.",
+   "style": "quiet, sincere, slow, almost whispering",
+   "voice_prompt": "Gloomy 10-year-old boy, low quiet monotone voice, few words, long pauses, Israeli accent"
+  },
+  {
+   "id": "ido_1_ru",
+   "type": "voice",
+   "voice": "ido",
+   "lang": "ru",
+   "file": "audio/voice/ido_1_ru.mp3",
+   "text": "Я с тобой, брат.",
+   "style": "warm, steady, medium",
+   "voice_prompt": "Friendly calm 10-year-old Israeli boy, steady reliable voice"
+  },
+  {
+   "id": "ido_1_he",
+   "type": "voice",
+   "voice": "ido",
+   "lang": "he",
+   "file": "audio/voice/ido_1_he.mp3",
+   "text": "אני איתך, אחי.",
+   "style": "warm, steady, medium",
+   "voice_prompt": "Friendly calm 10-year-old Israeli boy, steady reliable voice"
+  },
+  {
+   "id": "ido_2_ru",
+   "type": "voice",
+   "voice": "ido",
+   "lang": "ru",
+   "file": "audio/voice/ido_2_ru.mp3",
+   "text": "Давай, я понесу.",
+   "style": "helpful, easygoing",
+   "voice_prompt": "Friendly calm 10-year-old Israeli boy, steady reliable voice"
+  },
+  {
+   "id": "ido_2_he",
+   "type": "voice",
+   "voice": "ido",
+   "lang": "he",
+   "file": "audio/voice/ido_2_he.mp3",
+   "text": "תן, אני אסחוב.",
+   "style": "helpful, easygoing",
+   "voice_prompt": "Friendly calm 10-year-old Israeli boy, steady reliable voice"
+  },
+  {
+   "id": "amir_1_ru",
+   "type": "voice",
+   "voice": "amir",
+   "lang": "ru",
+   "file": "audio/voice/amir_1_ru.mp3",
+   "text": "Ха-ха-ха! Чё? Я не понял! Ха-ха!",
+   "style": "laughing uncontrollably, loud, goofy",
+   "voice_prompt": "Big chubby 11-year-old boy, loud booming voice, constantly laughing, goofy, Israeli accent"
+  },
+  {
+   "id": "amir_1_he",
+   "type": "voice",
+   "voice": "amir",
+   "lang": "he",
+   "file": "audio/voice/amir_1_he.mp3",
+   "text": "חחח! מה? לא הבנתי! חחח!",
+   "style": "laughing uncontrollably, loud, goofy",
+   "voice_prompt": "Big chubby 11-year-old boy, loud booming voice, constantly laughing, goofy, Israeli accent"
+  },
+  {
+   "id": "amir_2_ru",
+   "type": "voice",
+   "voice": "amir",
+   "lang": "ru",
+   "file": "audio/voice/amir_2_ru.mp3",
+   "text": "Я их сейчас раздавлю!",
+   "style": "excited, loud, laughing",
+   "voice_prompt": "Big chubby 11-year-old boy, loud booming voice, constantly laughing, goofy, Israeli accent"
+  },
+  {
+   "id": "amir_2_he",
+   "type": "voice",
+   "voice": "amir",
+   "lang": "he",
+   "file": "audio/voice/amir_2_he.mp3",
+   "text": "אני אמעך אותם!",
+   "style": "excited, loud, laughing",
+   "voice_prompt": "Big chubby 11-year-old boy, loud booming voice, constantly laughing, goofy, Israeli accent"
+  },
+  {
+   "id": "gaya_1_ru",
+   "type": "voice",
+   "voice": "gaya",
+   "lang": "ru",
+   "file": "audio/voice/gaya_1_ru.mp3",
+   "text": "Я девочка, вообще-то!",
+   "style": "offended, sharp, fast",
+   "voice_prompt": "Tomboy 10-year-old girl, slightly low raspy voice, bold, quick, a bit touchy, Israeli accent"
+  },
+  {
+   "id": "gaya_1_he",
+   "type": "voice",
+   "voice": "gaya",
+   "lang": "he",
+   "file": "audio/voice/gaya_1_he.mp3",
+   "text": "אני בת, דרך אגב!",
+   "style": "offended, sharp, fast",
+   "voice_prompt": "Tomboy 10-year-old girl, slightly low raspy voice, bold, quick, a bit touchy, Israeli accent"
+  },
+  {
+   "id": "gaya_2_ru",
+   "type": "voice",
+   "voice": "gaya",
+   "lang": "ru",
+   "file": "audio/voice/gaya_2_ru.mp3",
+   "text": "Я первая на дереве!",
+   "style": "competitive, breathless, fast",
+   "voice_prompt": "Tomboy 10-year-old girl, slightly low raspy voice, bold, quick, a bit touchy, Israeli accent"
+  },
+  {
+   "id": "gaya_2_he",
+   "type": "voice",
+   "voice": "gaya",
+   "lang": "he",
+   "file": "audio/voice/gaya_2_he.mp3",
+   "text": "אני ראשונה על העץ!",
+   "style": "competitive, breathless, fast",
+   "voice_prompt": "Tomboy 10-year-old girl, slightly low raspy voice, bold, quick, a bit touchy, Israeli accent"
+  },
+  {
+   "id": "yonatan_1_ru",
+   "type": "voice",
+   "voice": "yonatan",
+   "lang": "ru",
+   "file": "audio/voice/yonatan_1_ru.mp3",
+   "text": "Я быстро! Я принесу!",
+   "style": "cheerful, energetic, German accent",
+   "voice_prompt": "Sporty cheerful 10-year-old boy, always smiling in voice, German accent, a bit slow-witted, enthusiastic"
+  },
+  {
+   "id": "yonatan_1_he",
+   "type": "voice",
+   "voice": "yonatan",
+   "lang": "he",
+   "file": "audio/voice/yonatan_1_he.mp3",
+   "text": "אני מהיר! אני אביא!",
+   "style": "cheerful, energetic, German accent",
+   "voice_prompt": "Sporty cheerful 10-year-old boy, always smiling in voice, German accent, a bit slow-witted, enthusiastic"
+  },
+  {
+   "id": "yonatan_2_ru",
+   "type": "voice",
+   "voice": "yonatan",
+   "lang": "ru",
+   "file": "audio/voice/yonatan_2_ru.mp3",
+   "text": "Это очень смешная немецкая шутка!",
+   "style": "proud, smiling, slow, German accent",
+   "voice_prompt": "Sporty cheerful 10-year-old boy, always smiling in voice, German accent, a bit slow-witted, enthusiastic"
+  },
+  {
+   "id": "yonatan_2_he",
+   "type": "voice",
+   "voice": "yonatan",
+   "lang": "he",
+   "file": "audio/voice/yonatan_2_he.mp3",
+   "text": "זאת בדיחה גרמנית מאוד מצחיקה!",
+   "style": "proud, smiling, slow, German accent",
+   "voice_prompt": "Sporty cheerful 10-year-old boy, always smiling in voice, German accent, a bit slow-witted, enthusiastic"
+  },
+  {
+   "id": "yonatan_3_ru",
+   "type": "voice",
+   "voice": "yonatan",
+   "lang": "ru",
+   "file": "audio/voice/yonatan_3_ru.mp3",
+   "text": "Was ist grün und klopft an die Tür? Ein Klopfsalat!",
+   "style": "cheerful, German, then awkward silence",
+   "voice_prompt": "Sporty cheerful 10-year-old boy, always smiling in voice, German accent, a bit slow-witted, enthusiastic"
+  },
+  {
+   "id": "yakut_1_ru",
+   "type": "voice",
+   "voice": "yakut",
+   "lang": "ru",
+   "file": "audio/voice/yakut_1_ru.mp3",
+   "text": "Прыгай, не бойся!",
+   "style": "encouraging, loud, fast",
+   "voice_prompt": "Fearless wild 10-year-old boy, raspy loud voice, slight Yakut Siberian accent, adventurous, joyful"
+  },
+  {
+   "id": "yakut_1_he",
+   "type": "voice",
+   "voice": "yakut",
+   "lang": "he",
+   "file": "audio/voice/yakut_1_he.mp3",
+   "text": "קפוץ, אל תפחד!",
+   "style": "encouraging, loud, fast",
+   "voice_prompt": "Fearless wild 10-year-old boy, raspy loud voice, slight Yakut Siberian accent, adventurous, joyful"
+  },
+  {
+   "id": "yakut_2_ru",
+   "type": "voice",
+   "voice": "yakut",
+   "lang": "ru",
+   "file": "audio/voice/yakut_2_ru.mp3",
+   "text": "Это мамонтовое мясо, дед из мерзлоты достал!",
+   "style": "proud, boastful, Yakut accent",
+   "voice_prompt": "Fearless wild 10-year-old boy, raspy loud voice, slight Yakut Siberian accent, adventurous, joyful"
+  },
+  {
+   "id": "yakut_2_he",
+   "type": "voice",
+   "voice": "yakut",
+   "lang": "he",
+   "file": "audio/voice/yakut_2_he.mp3",
+   "text": "זה בשר ממותה, סבא שלי הוציא מהקרח!",
+   "style": "proud, boastful, Yakut accent",
+   "voice_prompt": "Fearless wild 10-year-old boy, raspy loud voice, slight Yakut Siberian accent, adventurous, joyful"
+  },
+  {
+   "id": "yakut_3_ru",
+   "type": "voice",
+   "voice": "yakut",
+   "lang": "ru",
+   "file": "audio/voice/yakut_3_ru.mp3",
+   "text": "Уруй!",
+   "style": "loud joyful battle cry, jumping",
+   "voice_prompt": "Fearless wild 10-year-old boy, raspy loud voice, slight Yakut Siberian accent, adventurous, joyful"
+  },
+  {
+   "id": "iit_1_ru",
+   "type": "voice",
+   "voice": "iit",
+   "lang": "ru",
+   "file": "audio/voice/iit_1_ru.mp3",
+   "text": "Привет, Бени! Ты куда?",
+   "style": "friendly, curious, medium pace",
+   "voice_prompt": "Friendly calm 10-year-old Israeli child, warm natural voice"
+  },
+  {
+   "id": "iit_1_he",
+   "type": "voice",
+   "voice": "iit",
+   "lang": "he",
+   "file": "audio/voice/iit_1_he.mp3",
+   "text": "היי בני! לאן אתה הולך?",
+   "style": "friendly, curious, medium pace",
+   "voice_prompt": "Friendly calm 10-year-old Israeli child, warm natural voice"
+  },
+  {
+   "id": "mila_1_ru",
+   "type": "voice",
+   "voice": "mila",
+   "lang": "ru",
+   "file": "audio/voice/mila_1_ru.mp3",
+   "text": "Сыграешь мне на гитаре?",
+   "style": "dreamy, soft, slightly shy",
+   "voice_prompt": "Sweet cheerful girl, soft clear voice, gentle humor"
+  },
+  {
+   "id": "mila_1_he",
+   "type": "voice",
+   "voice": "mila",
+   "lang": "he",
+   "file": "audio/voice/mila_1_he.mp3",
+   "text": "תנגן לי בגיטרה?",
+   "style": "dreamy, soft, slightly shy",
+   "voice_prompt": "Sweet cheerful girl, soft clear voice, gentle humor"
+  },
+  {
+   "id": "french_1_ru",
+   "type": "voice",
+   "voice": "french",
+   "lang": "ru",
+   "file": "audio/voice/french_1_ru.mp3",
+   "text": "Эй, малыш!",
+   "style": "two mocking French boys, teasing, laughing, French accent",
+   "voice_prompt": "Two mocking French boys, teasing, laughing, French accent"
+  },
+  {
+   "id": "french_1_fr",
+   "type": "voice",
+   "voice": "french",
+   "lang": "fr",
+   "file": "audio/voice/french_1_fr.mp3",
+   "text": "Allez, petit !",
+   "style": "two mocking French boys, teasing, laughing, French accent",
+   "voice_prompt": "Two mocking French boys, teasing, laughing, French accent"
+  },
+  {
+   "id": "guard_1_ru",
+   "type": "voice",
+   "voice": "guard",
+   "lang": "ru",
+   "file": "audio/voice/guard_1_ru.mp3",
+   "text": "Стоять! Ты почему не на уроке?",
+   "style": "strict tired middle-aged guard, loud",
+   "voice_prompt": "Strict tired middle-aged guard, loud"
+  },
+  {
+   "id": "guard_1_he",
+   "type": "voice",
+   "voice": "guard",
+   "lang": "he",
+   "file": "audio/voice/guard_1_he.mp3",
+   "text": "עצור! למה אתה לא בשיעור?",
+   "style": "strict tired middle-aged guard, loud",
+   "voice_prompt": "Strict tired middle-aged guard, loud"
+  },
+  {
+   "id": "neighbor_1_ru",
+   "type": "voice",
+   "voice": "neighbor",
+   "lang": "ru",
+   "file": "audio/voice/neighbor_1_ru.mp3",
+   "text": "Опять эти дети!",
+   "style": "grumpy old man, shouting from window",
+   "voice_prompt": "Grumpy old man, shouting from window"
+  },
+  {
+   "id": "neighbor_1_he",
+   "type": "voice",
+   "voice": "neighbor",
+   "lang": "he",
+   "file": "audio/voice/neighbor_1_he.mp3",
+   "text": "שוב הילדים האלה!",
+   "style": "grumpy old man, shouting from window",
+   "voice_prompt": "Grumpy old man, shouting from window"
+  }
+ ]
+}

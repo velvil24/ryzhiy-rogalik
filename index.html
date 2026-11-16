@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Рыжий Рогалик</title>
+  <meta name="description" content="Рыжий Рогалик — браузерный roguelike про Бени, мальчика с гитарой, и пять этапов его жизни." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>" />
+</head>
+<body>
+  <div id="app">
+    <main id="stage">
+      <canvas id="view"></canvas>
+      <div id="log"></div>
+    </main>
+    <aside id="side"></aside>
+  </div>
+  <div id="modal" class="modal"></div>
+  <canvas id="overview"></canvas>
+  <nav id="touch">
+    <div class="pad">
+      <button data-k="Home">↖</button><button data-k="ArrowUp">↑</button><button data-k="PageUp">↗</button>
+      <button data-k="ArrowLeft">←</button><button data-k=" ">●</button><button data-k="ArrowRight">→</button>
+      <button data-k="End">↙</button><button data-k="ArrowDown">↓</button><button data-k="PageDown">↘</button>
+    </div>
+    <div class="acts">
+      <button data-k="g">🎸G</button><button data-k="l">👁L</button><button data-k="j">🦘J</button><button data-k="t">🪨T</button>
+      <button data-k="r">📜R</button><button data-k=">">⤵︎</button><button data-k="i">🎒I</button><button data-k="q">📋Q</button>
+      <button data-k="m">🗺M</button><button data-k="Tab">@</button><button data-k="z">⏳</button><button data-k="Escape">✕</button>
+    </div>
+  </nav>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
