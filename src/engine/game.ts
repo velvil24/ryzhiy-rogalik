@@ -363,7 +363,7 @@ export class Game {
     m.visible.fill(0);
     let r: number;
     if (m.light === 'indoor') r = 9;
-    else if (m.light === 'dim') r = 6;
+    else if (m.light === 'dim') r = 10;
     else if (m.light === 'bright') r = 14;
     else {
       const t = this.timeOfDay();
