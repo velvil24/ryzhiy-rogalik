@@ -4,3 +4,7 @@ dist/
 .env.*
 *.key
 .wrangler/
+
+# сгенерированный звук хранится рядом, но не в git (большие файлы)
+assets/audio/**/*.mp3
+scripts/.voices.json
