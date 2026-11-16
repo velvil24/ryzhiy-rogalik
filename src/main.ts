@@ -21,6 +21,10 @@ const renderer = new Renderer(canvas);
 (window as any).__game = game;
 const ui = new UI(game);
 
+// На телефоне клавиш нет: включаем нужную музыку и по касанию/клику (браузер разрешает звук только после жеста)
+const syncMusic = () => Audio.music(game.mode === 'title' || !game.mapId ? 'menu' : game.mode === 'dead' ? 'death' : game.currentMusic());
+window.addEventListener('pointerdown', syncMusic, { capture: true });
+
 // ── сенсорный режим (телефоны и планшеты)
 const root = document.documentElement;
 const isTouch = () => matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window || window.innerWidth < 700;

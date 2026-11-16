@@ -10,6 +10,29 @@ const entries = new Map<string, Entry>((manifest.items as Entry[]).map((e) => [e
 const cache = new Map<string, Howl | null>();
 let musicId: string | null = null;
 let music: Howl | null = null;
+let musicSnd: number | undefined;
+let voiceHowl: Howl | null = null;
+let voiceSnd: number | undefined;
+
+// Музыка играет через Web Audio: пока браузер не разрешил звук, Howler держит её в очереди
+// и сам запускает после первого касания или клавиши (раньше трек меню молчал до смены трека).
+// Гасим только своё воспроизведение (по id), иначе быстрый возврат A → B → A глушил бы новый трек.
+// После затухания старый трек выгружается из памяти.
+function fadeOutMusic() {
+  const old = music;
+  const snd = musicSnd;
+  music = null;
+  musicSnd = undefined;
+  if (!old || snd === undefined) return;
+  old.fade(old.volume(snd) as number, 0, 600, snd);
+  setTimeout(() => {
+    old.stop(snd);
+    if (old !== music && !old.playing()) {
+      old.unload();
+      for (const [k, v] of cache) if (v === old) cache.delete(k);
+    }
+  }, 650);
+}
 let ambience: Howl | null = null;
 let ctx: AudioContext | null = null;
 let enabled = true;
@@ -26,7 +49,7 @@ function load(id: string, loop = false): Howl | null {
     cache.set(id, null);
     return null;
   }
-  const h = new Howl({ src: [e.file], loop, html5: e.type === 'music', preload: true });
+  const h = new Howl({ src: [e.file], loop, preload: true });
   h.once('loaderror', () => cache.set(id, null));
   cache.set(id, h);
   return h;
@@ -78,28 +101,35 @@ export const Audio = {
       h.once('loaderror', () => beep(STUB[id] ?? [440]));
     } else beep(STUB[id] ?? [440]);
   },
+  // одновременно звучит только одна реплика: новая обрывает предыдущую
   voice(id: string) {
     if (!enabled) return;
+    this.stopVoice();
     const h = load(id);
     if (h) {
       h.volume(1);
-      h.play();
+      voiceSnd = h.play();
+      voiceHowl = h;
     }
+  },
+  stopVoice() {
+    if (voiceHowl && voiceSnd !== undefined) voiceHowl.stop(voiceSnd);
+    voiceHowl = null;
+    voiceSnd = undefined;
   },
   music(id: string) {
     if (musicId === id) return;
     musicId = id;
-    music?.fade(music.volume(), 0, 600);
-    const old = music;
-    setTimeout(() => old?.stop(), 650);
+    fadeOutMusic();
     if (!enabled) return;
     const h = load(id, true);
     music = h;
+    musicSnd = undefined;
     if (h) {
       h.loop(true);
-      h.volume(0);
-      h.play();
-      h.fade(0, musicVol, 800);
+      musicSnd = h.play();
+      h.volume(0, musicSnd);
+      h.fade(0, musicVol, 800, musicSnd);
     }
   },
   ambience(id: string | undefined) {
@@ -117,6 +147,12 @@ export const Audio = {
   toggle() {
     enabled = !enabled;
     Howler.mute(!enabled);
+    // звук включили, а музыка ещё не запускалась — запускаем
+    if (enabled && musicId && !music) {
+      const id = musicId;
+      musicId = null;
+      this.music(id);
+    }
     return enabled;
   },
   get enabled() {
