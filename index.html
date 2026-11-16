@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#120a06" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Рыжий Рогалик" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <title>Рыжий Рогалик</title>
+  <meta name="description" content="Рыжий Рогалик — браузерный roguelike про Бени, мальчика с гитарой, и пять этапов его жизни." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>" />
+  <script type="module" crossorigin src="./assets/index-CpcOFIIA.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C0-Nkg5a.css">
+</head>
+<body>
+  <div id="app">
+    <main id="stage">
+      <canvas id="view"></canvas>
+      <div id="log"></div>
+      <div id="hud"></div>
+      <div id="corner">
+        <button id="infobtn" title="Состояние Бени">📊</button>
+        <button id="fsbtn" title="Во весь экран (F)">⛶</button>
+      </div>
+    </main>
+    <aside id="side"></aside>
+  </div>
+  <div id="modal" class="modal"></div>
+  <canvas id="overview"></canvas>
+  <nav id="touch">
+    <div class="pad">
+      <button data-k="Home">↖</button><button data-k="ArrowUp">↑</button><button data-k="PageUp">↗</button>
+      <button data-k="ArrowLeft">←</button><button data-k=" ">●</button><button data-k="ArrowRight">→</button>
+      <button data-k="End">↙</button><button data-k="ArrowDown">↓</button><button data-k="PageDown">↘</button>
+    </div>
+    <div class="acts">
+      <button data-k="g">🎸</button><button data-k="l">👁</button><button data-k="j">🦘</button><button data-k="t">🪨</button>
+      <button data-k="r">📜</button><button data-k=">">⤵︎</button><button data-k="i">🎒</button><button data-k="q">📋</button>
+      <button data-k="m">🗺</button><button data-k="z">⏳</button><button data-k="?">❔</button><button data-k="o">🔊</button>
+    </div>
+  </nav>
+</body>
+</html>
