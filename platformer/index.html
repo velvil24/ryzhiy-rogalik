@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a0e06" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Выше крыш" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <title>Рыжий Рогалик: Выше крыш</title>
+  <meta name="description" content="Рисованный 2D-платформер про Бени, мальчика с гитарой, который прыгал выше крыш. Уровень 1: Маскерет-Батья." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>" />
+  <script type="module" crossorigin src="./assets/index-D_J5usXX.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Buw13CeH.css">
+</head>
+<body>
+  <canvas id="view"></canvas>
+  <div id="hud"></div>
+  <div id="corner">
+    <button id="menubtn" title="Пауза (Esc)">⏸</button>
+    <button id="sndbtn" title="Звук">🔊</button>
+    <button id="fsbtn" title="Во весь экран">⛶</button>
+  </div>
+  <div id="toasts"></div>
+  <div id="banner"><div class="t"></div><div class="s"></div></div>
+  <div id="dialog"></div>
+  <div id="screen"></div>
+  <div id="touch">
+    <div id="stick"><div class="knob"></div></div>
+    <div class="acts">
+      <button data-a="chordA" class="g hide">A</button>
+      <button data-a="chordE" class="g hide">E</button>
+      <button data-a="use" class="use">✋</button>
+      <button data-a="throw">🪨</button>
+      <button data-a="attack">🏏</button>
+      <button data-a="jump" class="big">⤒</button>
+    </div>
+  </div>
+  <div id="rotate"><div>📱↻</div><p>Поверните телефон горизонтально</p><button id="rotok">Играть так</button></div>
+</body>
+</html>
