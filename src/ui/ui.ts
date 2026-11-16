@@ -25,6 +25,7 @@ export class UI {
   log: HTMLElement;
   modal: HTMLElement;
   overview: HTMLCanvasElement;
+  hud: HTMLElement;
   lastLogLen = -1;
   invPage: 'items' = 'items';
   albumMsg = '';
@@ -34,6 +35,7 @@ export class UI {
     this.log = document.getElementById('log')!;
     this.modal = document.getElementById('modal')!;
     this.overview = document.getElementById('overview') as HTMLCanvasElement;
+    this.hud = document.getElementById('hud')!;
   }
 
   update() {
@@ -41,6 +43,7 @@ export class UI {
     if (g.mode === 'title' || g.mode === 'album') {
       this.side.innerHTML = '';
       this.log.innerHTML = '';
+      this.hud.innerHTML = '';
     } else {
       this.renderSide();
       this.renderLog();
@@ -57,6 +60,15 @@ export class UI {
     const allies = m.actors.filter((a) => a.faction === 'ally' && a !== p);
     const tod = m.light === 'outdoor' ? g.timeOfDay() : m.isDimension ? 'вне времени' : 'в помещении';
     const todIcon = tod === 'день' ? '☀️' : tod === 'закат' ? '🌇' : tod === 'ночь' ? '🌙' : '✨';
+    // компактная строка состояния для телефонов и планшетов
+    const chip = (t: string, low = false) => `<span class="chip${low ? ' low' : ''}">${t}</span>`;
+    this.hud.innerHTML =
+      chip(`❤️ ${p.hp}/${p.maxHp}`, p.hp < p.maxHp * 0.3) +
+      chip(`🍉 ${s.hunger}`, s.hunger < 25) +
+      (g.hasItem('guitar') ? chip(`🎸 ${s.drive}/${s.maxDrive}`) : '') +
+      (m.tiles[p.y * m.w + p.x] === 'deep' ? chip(`🫧 ${g.breath}`, g.breath < 4) : '') +
+      chip(`${todIcon} ${g.turn}`) +
+      chip(esc(m.name));
     this.side.innerHTML = `
       <div class="title">Бени <small>ур. ${s.lvl} · Уровень ${g.level}</small></div>
       <div class="loc">${esc(m.name)}${m.he ? `<div class="he" dir="rtl">${esc(m.he)}</div>` : ''}</div>
@@ -102,7 +114,8 @@ export class UI {
     const g = this.game;
     const show = (html: string, cls = '') => {
       this.modal.className = 'modal open ' + cls;
-      this.modal.innerHTML = `<div class="box">${html}</div>`;
+      const closable = ['inv', 'chords', 'quests', 'map', 'help', 'album'].includes(cls);
+      this.modal.innerHTML = `<div class="box">${closable ? '<button class="x" data-k="Escape" title="Закрыть">✕</button>' : ''}${html}</div>`;
     };
     this.overview.style.display = 'none';
     switch (g.mode) {

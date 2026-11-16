@@ -19,12 +19,69 @@ const renderer = new Renderer(canvas);
 (window as any).__game = game;
 const ui = new UI(game);
 
+// ── сенсорный режим (телефоны и планшеты)
+const root = document.documentElement;
+const isTouch = () => matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window || window.innerWidth < 700;
+function applyTouch() {
+  root.classList.toggle('touch', isTouch());
+}
+applyTouch();
+
 function resize() {
-  renderer.resize();
-  game.dirty = true;
+  applyTouch();
+  // ждём перестройки вёрстки (поворот экрана, выход из полноэкранного режима)
+  requestAnimationFrame(() => {
+    renderer.resize();
+    game.dirty = true;
+  });
 }
 window.addEventListener('resize', resize);
+window.addEventListener('orientationchange', () => setTimeout(resize, 200));
 resize();
+
+// ── полноэкранный режим
+const fsEl = document.documentElement as HTMLElement & { webkitRequestFullscreen?: () => Promise<void> };
+const doc = document as Document & { webkitFullscreenElement?: Element; webkitExitFullscreen?: () => Promise<void> };
+const fsSupported = () => !!(fsEl.requestFullscreen || fsEl.webkitRequestFullscreen);
+const isFs = () => !!(document.fullscreenElement || doc.webkitFullscreenElement) || root.classList.contains('immersive');
+async function toggleFullscreen() {
+  try {
+    if (document.fullscreenElement || doc.webkitFullscreenElement) {
+      await (document.exitFullscreen ? document.exitFullscreen() : doc.webkitExitFullscreen?.());
+    } else if (root.classList.contains('immersive')) {
+      root.classList.remove('immersive');
+    } else if (fsSupported()) {
+      await (fsEl.requestFullscreen ? fsEl.requestFullscreen({ navigationUI: 'hide' }) : fsEl.webkitRequestFullscreen!());
+      try {
+        await (screen.orientation as any)?.lock?.('any');
+      } catch {
+        /* блокировка ориентации есть не везде */
+      }
+    } else {
+      // iPhone: Fullscreen API нет — прячем всё лишнее и подсказываем «На экран Домой»
+      root.classList.add('immersive');
+      game.msg('На iPhone настоящий полный экран: «Поделиться» → «На экран Домой», и запускайте игру с иконки.', '#ffd060');
+    }
+  } catch {
+    root.classList.toggle('immersive');
+  }
+  updateFsBtn();
+  resize();
+}
+const fsBtn = document.getElementById('fsbtn')!;
+function updateFsBtn() {
+  fsBtn.textContent = isFs() ? '🗗' : '⛶';
+  fsBtn.title = isFs() ? 'Выйти из полного экрана (F)' : 'Во весь экран (F)';
+}
+fsBtn.addEventListener('click', () => toggleFullscreen());
+document.addEventListener('fullscreenchange', () => { updateFsBtn(); resize(); });
+document.addEventListener('webkitfullscreenchange', () => { updateFsBtn(); resize(); });
+// запущено с иконки на «Домой» — уже во весь экран
+if (matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches) fsBtn.style.display = 'none';
+
+// ── панель состояния на телефоне
+document.getElementById('infobtn')!.addEventListener('click', () => root.classList.toggle('show-side'));
+document.getElementById('side')!.addEventListener('click', () => root.classList.remove('show-side'));
 
 
 const MOVE: Record<string, [number, number]> = {
@@ -45,6 +102,14 @@ function handle(key: string, code: string, shift: boolean) {
     return;
   }
   const k = key.length === 1 ? key.toLowerCase() : key;
+  if ((k === 'f' || k === 'а') && g.mode !== 'dialog' && g.mode !== 'inventory') {
+    toggleFullscreen();
+    return;
+  }
+  if (k === 'Escape' && root.classList.contains('show-side')) {
+    root.classList.remove('show-side');
+    return;
+  }
   switch (g.mode) {
     case 'title':
       if (k === 'Enter' || k === ' ') g.newRun();
@@ -211,16 +276,74 @@ document.getElementById('modal')!.addEventListener('click', (e) => {
   ui.update();
 });
 
-// сенсорные кнопки
-document.getElementById('touch')!.addEventListener('click', (e) => {
-  const b = (e.target as HTMLElement).closest('button[data-k]') as HTMLElement | null;
-  if (!b) return;
+// сенсорные кнопки: срабатывают сразу при касании, стрелки повторяются при удержании
+const REPEAT = new Set(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageUp', 'PageDown']);
+let holdTimer = 0;
+let heldBtn: HTMLElement | null = null;
+function stopHold() {
+  clearTimeout(holdTimer);
+  heldBtn?.classList.remove('held');
+  heldBtn = null;
+}
+function press(b: HTMLElement) {
+  if (navigator.vibrate) navigator.vibrate(8);
   handle(b.dataset.k!, b.dataset.code ?? '', b.dataset.shift === '1');
   ui.update();
+}
+const touchBar = document.getElementById('touch')!;
+touchBar.addEventListener('pointerdown', (e) => {
+  const b = (e.target as HTMLElement).closest('button[data-k]') as HTMLElement | null;
+  if (!b) return;
+  e.preventDefault();
+  stopHold();
+  heldBtn = b;
+  b.classList.add('held');
+  // окно открыто — стрелки работают как обычные клавиши (без повтора)
+  press(b);
+  if (REPEAT.has(b.dataset.k!)) {
+    const again = () => {
+      if (heldBtn !== b || game.mode !== 'play') return stopHold();
+      press(b);
+      holdTimer = window.setTimeout(again, 150);
+    };
+    holdTimer = window.setTimeout(again, 380);
+  }
+});
+for (const ev of ['pointerup', 'pointercancel', 'pointerleave']) touchBar.addEventListener(ev, stopHold);
+touchBar.addEventListener('contextmenu', (e) => e.preventDefault());
+
+// свайп по карте — шаг в 8 направлениях (каждые ~40 px протяжки — ещё шаг)
+let swipe: { x: number; y: number; moved: boolean } | null = null;
+let suppressClick = false;
+canvas.addEventListener('touchstart', (e) => {
+  if (e.touches.length !== 1) return;
+  swipe = { x: e.touches[0].clientX, y: e.touches[0].clientY, moved: false };
+}, { passive: true });
+canvas.addEventListener('touchmove', (e) => {
+  if (!swipe || game.mode !== 'play') return;
+  e.preventDefault();
+  const t = e.touches[0];
+  const dx = t.clientX - swipe.x, dy = t.clientY - swipe.y;
+  if (Math.hypot(dx, dy) < 40) return;
+  const a = Math.round(Math.atan2(dy, dx) / (Math.PI / 4));
+  const DIR8: Record<number, [number, number]> = { 0: [1, 0], 1: [1, 1], 2: [0, 1], 3: [-1, 1], 4: [-1, 0], '-4': [-1, 0], '-3': [-1, -1], '-2': [0, -1], '-1': [1, -1] };
+  const [mx, my] = DIR8[a];
+  game.doTurn(game.playerMove(mx, my));
+  ui.update();
+  swipe = { x: t.clientX, y: t.clientY, moved: true };
+}, { passive: false });
+canvas.addEventListener('touchend', () => {
+  if (swipe?.moved) suppressClick = true;
+  swipe = null;
 });
 
 // клик по карте — шаг в сторону клика
 canvas.addEventListener('click', (e) => {
+  if (suppressClick) {
+    suppressClick = false;
+    return;
+  }
+  root.classList.remove('show-side');
   if (game.mode !== 'play') return;
   const r = canvas.getBoundingClientRect();
   const tx = Math.floor((e.clientX - r.left) / renderer.S + renderer.camX);

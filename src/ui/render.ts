@@ -45,7 +45,9 @@ export class Renderer {
     this.canvas.height = Math.floor(r.height * dpr);
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     this.ctx.imageSmoothingEnabled = false;
-    this.S = r.width < 700 ? 24 : 32;
+    // клетка: на телефоне мельче, чтобы было видно ~16+ клеток по короткой стороне
+    const short = Math.min(r.width, r.height);
+    this.S = short < 420 ? 22 : short < 560 ? 24 : r.width < 700 ? 24 : 32;
     this.cols = Math.ceil(r.width / this.S);
     this.rows = Math.ceil(r.height / this.S);
     this.tileCache.clear();
